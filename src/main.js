@@ -1,3 +1,63 @@
+
+// const readFiles = require('read-files-promise');
+
+// readFiles(['path/to/file0'], { encoding: 'utf8' })
+//   .then((buffers) => {
+//     buffers; // [ContenidoDeArchivo0]
+
+//     return readFiles(['path/to/file1'], { encoding: 'utf8' });
+//   })
+//   .then((buffers) => {
+//     buffers; // [ContenidoDeArchivo1]
+//   })
+//   .catch((error) => {
+//     console.log("Fallamos al leer archivos")
+//   });
+// ////
+//   let procesoLento = new Promise((resolve, reject) => {
+//     let datos = {};
+//     //...
+//     //muchas lineas de código
+//     //...
+//     if (error) {
+//       //uh oh, las cosas no salieron tan bien
+//       reject(new Error('Fallamos, lo siento'));
+//     }
+//     //...
+//     resolve(datos);
+//   });
+//   ///
+//     //... mucho código antes ...
+//     return Promise.resolve(dato);
+//   }.then(
+//     (dato) => {
+//       // Acá podemos usar el dato que retornamos en el then anterior
+//     }
+//   );
+  
+
+const dataNueva = () => {
+fetch ('./data/pokemon/pokemon.json')
+
+.then (resu => resu.json())
+
+.then(dataPoke => {
+  console.log (dataPoke);
+})
+
+};
+
+dataNueva();
+
+
+
+
+
+
+
+
+
+/////////////////////
 let dataPokemon = window.POKEMON.pokemon;
 const pokemones = document.getElementById('pokemones');
 const searchCoincidence = document.getElementById('search-coincidences');
