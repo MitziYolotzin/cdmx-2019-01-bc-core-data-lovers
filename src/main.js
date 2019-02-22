@@ -50,33 +50,45 @@
 // dataDinamic();
 
 
+// let dataPokemon =[];
+
+// const dataDynamic = () => {
+// fetch ('./data/pokemon/pokemon.json')
+
+// .then (response => response.json())
+
+// .then(dataPoke => {
+ 
+//  dataPokemon = dataPoke.pokemon;
+// });
+
+
+// };
+// dataDynamic();
+
+
+
+
 let dataPokemon =[];
+
 const dataDynamic = () => {
 fetch ('./data/pokemon/pokemon.json')
+
 .then (response => response.json())
 
 .then(dataPoke => {
-  console.log (dataPoke);
- dataPokemon = dataPoke.pokemon;
+ 
+localStorage.dataPoke = JSON.stringify(dataPoke.pokemon);
 
-})
+});
+
+
 };
 dataDynamic();
-// .catch((error) => {
-//      console.log("Fallamos al leer archivos")
-//     });
+
+
 
     
-
-
-
-
-
-
-
-
-
-
 /////////////////////
 //let dataPokemon = dataDynamic.pokemon;
 const pokemones = document.getElementById('pokemones');
@@ -133,7 +145,7 @@ const getTypePokemon = (arrayButtons) => {
       //console.log(event.target.name);
       //console.log(window.filterByType(event.target.name));
       //Invoke a function that paints Pokemon
-      showList(window.data.filterByType(dataPokemon, event.target.name));
+      showList(window.data.filterByType(JSON.parse(localStorage.dataPoke), event.target.name));
     })
   })
 }
@@ -144,7 +156,7 @@ getTypePokemon(buttonsArray)
 const filterCoincidence = () => {
   searchCoincidence.addEventListener('keyup', () => {
     let searchValue = document.getElementById('search-coincidences').value;
-    showList(window.data.filterByLetter(dataPokemon, searchValue));
+    showList(window.data.filterByLetter(JSON.parse(localStorage.dataPoke), searchValue));
   });
 }
 
@@ -165,36 +177,41 @@ if (ubication.includes('typePokemon.html')) {
     showList(window.sortData(dataPokemon,'name','asc'));
   });*/
 
+
   //Buttons actions for order data
   const orderRadio = document.getElementsByName("order");
   const arrayRadio = Array.from(orderRadio);
+  let dataParse = JSON.parse(localStorage.dataPoke)
   const getOrderPokemon = (optionsRadio) => {
     optionsRadio.map(radio => {
       radio.addEventListener("click", () => {
         if (radio.checked === true) {
           let idRadio = radio.id.split('-');
-          //console.log(window.data.sortData(dataPokemon,idRadio[1],idRadio[0]));
-          showList(window.data.sortData(dataPokemon, idRadio[1], idRadio[0]));
+        
+          showList(window.data.sortData(dataParse, idRadio[1], idRadio[0]));
         }
       });
     });
   }
   getOrderPokemon(arrayRadio);
 
-  showList(window.data.showAllData(dataPokemon));
+  
+  showList(window.data.showAllData(dataParse));
+  
+
 
 } else if (ubication.includes('statsPokemon.html')) {
-  const resultCandy = window.data.computeStats(dataPokemon, 'candy_count');
+  const resultCandy = window.data.computeStats(JSON.parse(localStorage.dataPoke), 'candy_count');
   document.getElementById('max-candy').innerHTML = resultCandy.maximum;
   document.getElementById('min-candy').innerHTML = resultCandy.minimum;
   document.getElementById('avg-candy').innerHTML = resultCandy.average;
 
-  const resultSpawn = window.data.computeStats(dataPokemon, 'spawn_chance');
+  const resultSpawn = window.data.computeStats(JSON.parse(localStorage.dataPoke), 'spawn_chance');
   document.getElementById('max-spawn').innerHTML = resultSpawn.maximum;
   document.getElementById('min-spawn').innerHTML = resultSpawn.minimum;
   document.getElementById('avg-spawn').innerHTML = resultSpawn.average;
 
-  const resultAvg = window.data.computeStats(dataPokemon, 'avg_spawns');
+  const resultAvg = window.data.computeStats(JSON.parse(localStorage.dataPoke), 'avg_spawns');
   document.getElementById('max-avg').innerHTML = resultAvg.maximum;
   document.getElementById('min-avg').innerHTML = resultAvg.minimum;
   document.getElementById('avg-avg').innerHTML = resultAvg.average;
