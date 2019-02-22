@@ -36,18 +36,38 @@
 //   );
   
 
-const dataNueva = () => {
-fetch ('./data/pokemon/pokemon.json')
+// const dataDinamic = () => {
+// fetch ('./data/pokemon/pokemon.json')
 
-.then (resu => resu.json())
+// .then (resu => resu.json())
+
+// .then(dataPoke => {
+//   console.log (dataPoke);
+// })
+
+// };
+
+// dataDinamic();
+
+
+let dataPokemon =[];
+const dataDynamic = () => {
+fetch ('./data/pokemon/pokemon.json')
+.then (response => response.json())
 
 .then(dataPoke => {
   console.log (dataPoke);
+ dataPokemon = dataPoke.pokemon;
+
 })
-
 };
+dataDynamic();
+// .catch((error) => {
+//      console.log("Fallamos al leer archivos")
+//     });
 
-dataNueva();
+    
+
 
 
 
@@ -58,7 +78,7 @@ dataNueva();
 
 
 /////////////////////
-let dataPokemon = window.POKEMON.pokemon;
+//let dataPokemon = dataDynamic.pokemon;
 const pokemones = document.getElementById('pokemones');
 const searchCoincidence = document.getElementById('search-coincidences');
 
