@@ -1,102 +1,46 @@
 
-// const readFiles = require('read-files-promise');
 
-// readFiles(['path/to/file0'], { encoding: 'utf8' })
-//   .then((buffers) => {
-//     buffers; // [ContenidoDeArchivo0]
+const pokemons = document.getElementById('pokemons');
+const searchCoincidence = document.getElementById('search-coincidences');
 
-//     return readFiles(['path/to/file1'], { encoding: 'utf8' });
-//   })
-//   .then((buffers) => {
-//     buffers; // [ContenidoDeArchivo1]
-//   })
-//   .catch((error) => {
-//     console.log("Fallamos al leer archivos")
-//   });
-// ////
-//   let procesoLento = new Promise((resolve, reject) => {
-//     let datos = {};
-//     //...
-//     //muchas lineas de código
-//     //...
-//     if (error) {
-//       //uh oh, las cosas no salieron tan bien
-//       reject(new Error('Fallamos, lo siento'));
-//     }
-//     //...
-//     resolve(datos);
-//   });
-//   ///
-//     //... mucho código antes ...
-//     return Promise.resolve(dato);
-//   }.then(
-//     (dato) => {
-//       // Acá podemos usar el dato que retornamos en el then anterior
-//     }
-//   );
-  
+// ARRAY BUTTONS
+const buttonsCollection = document.getElementsByClassName("typesPokemon");
+const buttonsArray = Array.from(buttonsCollection);
 
-// const dataDinamic = () => {
-// fetch ('./data/pokemon/pokemon.json')
+//STATS
+let maxCandy = document.getElementById('max-candy');
+let minCandy = document.getElementById('min-candy');
+let avgCandy = document.getElementById('avg-candy');
 
-// .then (resu => resu.json())
+let maxSpawn = document.getElementById('max-spawn');
+let minSpawn = document.getElementById('min-spawn');
+let avgSpawn = document.getElementById('avg-spawn');
 
-// .then(dataPoke => {
-//   console.log (dataPoke);
-// })
+let maxAverage = document.getElementById('max-avg');
+let minAverage = document.getElementById('min-avg');
+let avgAverage = document.getElementById('avg-avg');
 
-// };
-
-// dataDinamic();
-
-
-// let dataPokemon =[];
-
-// const dataDynamic = () => {
-// fetch ('./data/pokemon/pokemon.json')
-
-// .then (response => response.json())
-
-// .then(dataPoke => {
- 
-//  dataPokemon = dataPoke.pokemon;
-// });
-
-
-// };
-// dataDynamic();
-
-
-
-
+//JSON Data Dynamic 
 let dataPokemon =[];
 
-const dataDynamic = () => {
-fetch ('./data/pokemon/pokemon.json')
+//Buttons actions for order data
+const orderRadio = document.getElementsByName("order");
+const arrayRadio = Array.from(orderRadio);
+let dataParse = JSON.parse(localStorage.dataPoke);
 
-.then (response => response.json())
+//Obtains the location of the page
+let ubication = location.href;
 
-.then(dataPoke => {
- 
-localStorage.dataPoke = JSON.stringify(dataPoke.pokemon);
-
-});
-
-
-};
-dataDynamic();
+//MENU
+let menu = document.querySelector('#menu');
+let drawer = document.querySelector('nav');
+let outMenu = document.querySelector('nav');
 
 
-
-    
-/////////////////////
-//let dataPokemon = dataDynamic.pokemon;
-const pokemones = document.getElementById('pokemones');
-const searchCoincidence = document.getElementById('search-coincidences');
 
 //Show data
 const printPokemon = (pokemon) => {
-  let nombrePokemon = `<div class="divPokemon">
+  let namePokemon = `<div class="divPokemon">
     <div class="flip-card-inner">
       <div class="flip-card-front"><h5># ${pokemon.id}</h5><img id="${pokemon.id}" src="${pokemon.img}"><p>${pokemon.name}</p>
         <span class="color-type">${pokemon.type}</span>
@@ -120,22 +64,33 @@ const printPokemon = (pokemon) => {
       </div>
     </div>
   </div>`;
-  pokemones.insertAdjacentHTML("beforeend", nombrePokemon);
+  pokemons.insertAdjacentHTML("beforeend", namePokemon);
 };
-//const allData = window.showAllData(dataPokemon);
 
 //Show List Data
 const showList = (pokemonList) => {
-  pokemones.innerHTML = "";
+  pokemons.innerHTML = "";
   pokemonList.forEach(element => {
     printPokemon(element);
   });
 };
 
-// Array buttons
-const buttonsCollection = document.getElementsByClassName("typesPokemon");
-const buttonsArray = Array.from(buttonsCollection)
-//console.log(buttonsArray)
+
+//JSON Data Dynamic
+const dataDynamic = () => {
+fetch ('./data/pokemon/pokemon.json')
+
+.then (response => response.json())
+
+.then(dataPoke => {
+ 
+localStorage.dataPoke = JSON.stringify(dataPoke.pokemon);
+
+});
+
+};
+dataDynamic();
+
 
 //Pokémon type function according to clicking on the button that the user selects
 const getTypePokemon = (arrayButtons) => {
@@ -160,11 +115,22 @@ const filterCoincidence = () => {
   });
 }
 
-//function to order the data by type
+
+//Buttons actions for order data
+const getOrderPokemon = (optionsRadio) => {
+  optionsRadio.map(radio => {
+    radio.addEventListener("click", () => {
+      if (radio.checked === true) {
+        let idRadio = radio.id.split('-');
+      
+        showList(window.data.sortData(dataParse, idRadio[1], idRadio[0]));
+      }
+    });
+  });
+}
+
 
 //this part obtains the location of the page and depending on it executes the functions
-let ubication = location.href;
-
 if (ubication.includes('typePokemon.html')) {
   //Pass all data to show all the info or dataByType to show the filtered information
   //showList(allData);
@@ -177,46 +143,29 @@ if (ubication.includes('typePokemon.html')) {
     showList(window.sortData(dataPokemon,'name','asc'));
   });*/
 
-
-  //Buttons actions for order data
-  const orderRadio = document.getElementsByName("order");
-  const arrayRadio = Array.from(orderRadio);
-  let dataParse = JSON.parse(localStorage.dataPoke)
-  const getOrderPokemon = (optionsRadio) => {
-    optionsRadio.map(radio => {
-      radio.addEventListener("click", () => {
-        if (radio.checked === true) {
-          let idRadio = radio.id.split('-');
-        
-          showList(window.data.sortData(dataParse, idRadio[1], idRadio[0]));
-        }
-      });
-    });
-  }
   getOrderPokemon(arrayRadio);
 
-  
+
   showList(window.data.showAllData(dataParse));
   
 
-
 } else if (ubication.includes('statsPokemon.html')) {
   const resultCandy = window.data.computeStats(JSON.parse(localStorage.dataPoke), 'candy_count');
-  document.getElementById('max-candy').innerHTML = resultCandy.maximum;
-  document.getElementById('min-candy').innerHTML = resultCandy.minimum;
-  document.getElementById('avg-candy').innerHTML = resultCandy.average;
-
+  maxCandy.innerHTML = resultCandy.maximum;
+  minCandy.innerHTML = resultCandy.minimum;
+  avgCandy.innerHTML = resultCandy.average;
+  
   const resultSpawn = window.data.computeStats(JSON.parse(localStorage.dataPoke), 'spawn_chance');
-  document.getElementById('max-spawn').innerHTML = resultSpawn.maximum;
-  document.getElementById('min-spawn').innerHTML = resultSpawn.minimum;
-  document.getElementById('avg-spawn').innerHTML = resultSpawn.average;
+  maxSpawn.innerHTML = resultSpawn.maximum;
+  minSpawn.innerHTML = resultSpawn.minimum;
+  avgSpawn.innerHTML = resultSpawn.average;
 
   const resultAvg = window.data.computeStats(JSON.parse(localStorage.dataPoke), 'avg_spawns');
-  document.getElementById('max-avg').innerHTML = resultAvg.maximum;
-  document.getElementById('min-avg').innerHTML = resultAvg.minimum;
-  document.getElementById('avg-avg').innerHTML = resultAvg.average;
+  maxAverage.innerHTML = resultAvg.maximum;
+  minAverage.innerHTML = resultAvg.minimum;
+  avgAverage.innerHTML = resultAvg.average;
 
-  //Graficos
+  //STATS
   let google = window.google;
   google.charts.load('current', {
     'packages': ['bar']
@@ -279,12 +228,7 @@ if (ubication.includes('typePokemon.html')) {
 }
 
 
-
 //MENU
-let menu = document.querySelector('#menu');
-let drawer = document.querySelector('nav');
-let outMenu = document.querySelector('nav');
-
 menu.addEventListener('click', () => {
   //Despliega menú
   drawer.classList.toggle('open');
