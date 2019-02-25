@@ -20,7 +20,7 @@ let maxAverage = document.getElementById('max-avg');
 let minAverage = document.getElementById('min-avg');
 let avgAverage = document.getElementById('avg-avg');
 
-//Buttons actions for order data
+//BUTTTONS actions for order data
 const orderRadio = document.getElementsByName("order");
 const arrayRadio = Array.from(orderRadio);
 let dataParse = JSON.parse(localStorage.dataPoke);
@@ -126,26 +126,8 @@ const getOrderPokemon = (optionsRadio) => {
   });
 }
 
-
-//this part obtains the location of the page and depending on it executes the functions
-if (ubication.includes('typePokemon.html')) {
-  //Pass all data to show all the info or dataByType to show the filtered information
-  //showList(allData);
-  filterCoincidence();
-
-
-} else if (ubication.includes('orderPokemon.html')) {
-  /*const orderNameRadio = document.getElementById('asc-name');
-  orderNameRadio.addEventListener('click',()=>{
-    showList(window.sortData(dataPokemon,'name','asc'));
-  });*/
-
-  getOrderPokemon(arrayRadio);
-
-  showList(window.data.showAllData(dataParse));
-  
-
-} else if (ubication.includes('statsPokemon.html')) {
+//Stats
+const computeStatsView = () => {
   const resultCandy = window.data.computeStats(JSON.parse(localStorage.dataPoke), 'candy_count');
   maxCandy.innerHTML = resultCandy.maximum;
   minCandy.innerHTML = resultCandy.minimum;
@@ -161,8 +143,7 @@ if (ubication.includes('typePokemon.html')) {
   minAverage.innerHTML = resultAvg.minimum;
   avgAverage.innerHTML = resultAvg.average;
 
-  
-  //STATS
+  //Stats googlecharts
   let google = window.google;
   google.charts.load('current', {
     'packages': ['bar']
@@ -224,8 +205,34 @@ if (ubication.includes('typePokemon.html')) {
   google.charts.setOnLoadCallback(drawChartAvg);
 }
 
+const changePageSection = () => {
+//this part obtains the location of the page and depending on it executes the functions
+if (ubication.includes('typePokemon.html')) {
+  //Pass all data to show all the info or dataByType to show the filtered information
+  //showList(allData);
+  filterCoincidence();
 
-//MENU
+
+} else if (ubication.includes('orderPokemon.html')) {
+  /*const orderNameRadio = document.getElementById('asc-name');
+  orderNameRadio.addEventListener('click',()=>{
+    showList(window.sortData(dataPokemon,'name','asc'));
+  });*/
+
+  getOrderPokemon(arrayRadio);
+
+  showList(window.data.showAllData(dataParse));
+  
+
+} else if (ubication.includes('statsPokemon.html')) {
+  
+computeStatsView();
+
+}
+}
+
+
+//MENU NAV
 menu.addEventListener('click', () => {
   //Despliega menú
   drawer.classList.toggle('open');
@@ -242,5 +249,7 @@ outMenu.addEventListener('click', () => {
 });
 
 
+//CALL FUNCTIONS
+changePageSection();
 dataDynamic();
 getTypePokemon(buttonsArray);
