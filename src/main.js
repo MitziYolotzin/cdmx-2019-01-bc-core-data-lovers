@@ -20,9 +20,6 @@ let maxAverage = document.getElementById('max-avg');
 let minAverage = document.getElementById('min-avg');
 let avgAverage = document.getElementById('avg-avg');
 
-//JSON Data Dynamic 
-let dataPokemon =[];
-
 //Buttons actions for order data
 const orderRadio = document.getElementsByName("order");
 const arrayRadio = Array.from(orderRadio);
@@ -36,6 +33,8 @@ let menu = document.querySelector('#menu');
 let drawer = document.querySelector('nav');
 let outMenu = document.querySelector('nav');
 
+//JSON Data Dynamic 
+//let dataPokemon =[];
 
 
 //Show data
@@ -89,7 +88,6 @@ localStorage.dataPoke = JSON.stringify(dataPoke.pokemon);
 });
 
 };
-dataDynamic();
 
 
 //Pokémon type function according to clicking on the button that the user selects
@@ -105,7 +103,6 @@ const getTypePokemon = (arrayButtons) => {
   })
 }
 
-getTypePokemon(buttonsArray)
 
 //Filter coincidence gets the matches letter by letter
 const filterCoincidence = () => {
@@ -145,7 +142,6 @@ if (ubication.includes('typePokemon.html')) {
 
   getOrderPokemon(arrayRadio);
 
-
   showList(window.data.showAllData(dataParse));
   
 
@@ -165,6 +161,7 @@ if (ubication.includes('typePokemon.html')) {
   minAverage.innerHTML = resultAvg.minimum;
   avgAverage.innerHTML = resultAvg.average;
 
+  
   //STATS
   let google = window.google;
   google.charts.load('current', {
@@ -243,3 +240,7 @@ outMenu.addEventListener('click', () => {
   //Cierra menú al seleccionar una opción
   drawer.classList.remove('open');
 });
+
+
+dataDynamic();
+getTypePokemon(buttonsArray);
