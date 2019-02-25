@@ -3,97 +3,83 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Luckiest+Guy');
 
-/* Classes for the pokemon card with the effect that is flipped and shows information */
-.divPokemon {
-  border: 2px solid #99b89d;
-  width: 20%;
-  margin: 1%;
-  text-align: center;
-  border-radius: 1em;
-  height: 12em;
-  perspective: 100em;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
-.flip-card-inner {
-  position: relative;
-  width: 100%;
+/* MAIN MENU*/
+nav {
+  z-index: 100;
+  width: 300px;
   height: 100%;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.divPokemon:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-card-front,
-.flip-card-back {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-
+  top: 0;
+  background-color: rgb(247, 186, 56);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transform: translate(-300px, 0);
+  transition: transform .3s ease;
 }
 
-.flip-card-front {
-  z-index: 2;
+/* Unfold main menu */
+nav.open {
+  transform: translate(0, 0);
 }
 
-.flip-card-back {
-  background-color: #d45827;
-  color: white;
-  transform: rotateY(180deg);
-  z-index: 1;
-  border-radius: 1em;
-  text-align: justify;
-
+/* Items main menu*/
+nav li {
+  padding: 1em;
 }
 
-/* Stats */
-#details td {
-  padding-left: 1em;
-  font-family: 'Dosis', sans-serif;
-
-}
-
-#details th {
-  padding-left: 5%;
-  font-family: 'Dosis', sans-serif;
-}
-
-h4 {
-  color: orange;
+nav li a {
   text-align: center;
-  padding: 8%;
-}
-
-.break-words {
-  overflow-wrap: break-word;
-}
-
-.color-type {
-  color: #e37222;
-}
-
-h5,
-p,
-h4 {
+  padding: 1em;
+  color: #ffffff;
   font-family: 'Righteous', cursive;
+  font-size: 140%;
 }
 
-/* Index */
-.fondo {
-  background-image: url('./assets/images/backInicio.jpg');
-  width: 100%;
-  height: -webkit-fill-available;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+ul li:hover {
+  background: rgb(255, 215, 54);
 }
 
-#pokemones {
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: #0013bf;
+}
+
+a:visited {
+  color: #101061;
+}
+
+
+/* MAIN MENU Class */
+.menu-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 72px;
+  padding: 0 2em;
+  background-color: #0c4fb4;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+    0 1px 18px 0 rgba(0, 0, 0, 0.12),
+    0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+
+
+/* INDEX DATA AND TITLE, ID */
+#pokemons {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -119,11 +105,22 @@ h4 {
   margin-top: 5%;
 }
 
-/* Filter, search */
+/* INDEX background Class */
+.fondo {
+  background-image: url('./assets/images/backInicio.jpg');
+  width: 100%;
+  height: -webkit-fill-available;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* FILTER, SEARCH */
 input[type=search] {
   width: 50%;
 }
 
+/* FILTER, SEARCH, ID*/
 #icon-lup {
   width: 45%;
   padding-left: 25%;
@@ -146,7 +143,6 @@ input[type=search] {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-
 }
 
 #order-section>section {
@@ -154,7 +150,7 @@ input[type=search] {
   width: 30%
 }
 
-/* Buttons by type */
+/* BUTTONS BY TYPE, ID */
 #normal {
   background-image: url('./assets/images/Type_Normal.png');
 }
@@ -215,7 +211,59 @@ input[type=search] {
   background-image: url('./assets/images/Type_Dragón.png');
 }
 
-/* Input Radios */
+
+/* POKEMON CARD effect that is flipped and shows data information, Class */
+.divPokemon {
+  border: 2px solid #99b89d;
+  width: 20%;
+  margin: 1%;
+  text-align: center;
+  border-radius: 1em;
+  height: 12em;
+  perspective: 100em;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.divPokemon:hover .flip-card-inner {
+  transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  z-index: 2;
+}
+
+.flip-card-back {
+  background-color: #d45827;
+  color: white;
+  transform: rotateY(180deg);
+  z-index: 1;
+  border-radius: 1em;
+  text-align: justify;
+}
+
+
+/* INPUT RADIOS */
 input[type=radio] {
   margin-left: 20%;
 }
@@ -231,7 +279,7 @@ h2 {
   font-family: 'Courgette', cursive;
 }
 
-/* button group */
+/* INPUT RADIOS GROUP */
 fieldset {
   padding: 1em;
   border-radius: 1em;
@@ -254,9 +302,34 @@ legend {
   background-position: center;
 }
 
-/* Stats */
-.stats {
+
+/* STATS */
+h4 {
+  color: orange;
   text-align: center;
+  padding: 8%;
+}
+
+h5,
+p,
+h4 {
+  font-family: 'Righteous', cursive;
+}
+
+/* STATS ID */
+#details td {
+  padding-left: 1em;
+  font-family: 'Dosis', sans-serif;
+}
+
+#details th {
+  padding-left: 5%;
+  font-family: 'Dosis', sans-serif;
+}
+
+#principal-stats>section {
+  width: 55%;
+  margin-top: 5%;
 }
 
 #stats-table {
@@ -264,7 +337,6 @@ legend {
   border-collapse: collapse;
   width: 80%;
   margin-top: 10%;
-
 }
 
 #stats-table td,
@@ -288,7 +360,6 @@ legend {
   text-align: left;
   background-color: #d14f1f;
   color: white;
-
 }
 
 #principal-stats {
@@ -297,118 +368,32 @@ legend {
   justify-content: center;
 }
 
-/* MAIN MENU */
-#principal-stats>section {
-  width: 55%;
-  margin-top: 5%;
-
-}
-
-/* MENU */
-
-* {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-}
-
-li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-
-a:link {
-  color: #0013bf;
-}
-
-a:visited {
-  color: #101061;
-}
-
-.menu-mobile {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  height: 72px;
-  padding: 0 2em;
-  background-color: #0c4fb4;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
-    0 1px 18px 0 rgba(0, 0, 0, 0.12),
-    0 3px 5px -1px rgba(0, 0, 0, 0.2);
-}
-
-.blanco,
-.icon {
-  color: white;
-
-}
-
-
-
-nav {
-  z-index: 100;
-  width: 300px;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  background-color: rgb(247, 186, 56);
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  transform: translate(-300px, 0);
-  transition: transform .3s ease;
-}
-
-/* Unfold main menu */
-nav.open {
-  transform: translate(0, 0);
-}
-
-/* Items main menu*/
-nav li {
-  padding: 1em;
-}
-
-nav li a {
+/* Stats Class */
+.stats {
   text-align: center;
-  padding: 1em;
-  color: #ffffff;
-  font-family: 'Righteous', cursive;
-  font-size: 140%;
 }
 
-ul li:hover {
-  background: rgb(255, 215, 54);
+.break-words {
+  overflow-wrap: break-word;
 }
 
-/* Desktop */
+.color-type {
+  color: #e37222;
+}
+
+
+/* WEB RESPONSIVE DESIGN */
+/* DESKTOP MEDIA QUERIE */
 @media only screen and (min-widh: 992px) {
 
   .divPokemon {
     /*position: relative;*/
     width: 20%;
-
   }
 }
 
-/* Tablets */
+/* TABLETS MEDIA QUERIE */
 @media only screen and (max-width: 768px) {
-
-  .menu-mobile {
-
-    background-color: rgb(6, 90, 158);
-  }
-
-
-  .divPokemon {
-
-    width: 30%;
-  }
 
   #subtitle {
     font-size: 4em;
@@ -416,29 +401,31 @@ ul li:hover {
 
   #principal-stats>section {
     width: 70%;
-
   }
-
-
-}
-
-/* Mobiles */
-@media only screen and (max-width: 576px) {
 
   .menu-mobile {
-    background-color: rgb(10, 113, 182);
+    background-color: rgb(6, 90, 158);
   }
 
-
   .divPokemon {
+    width: 30%;
+  }
+}
 
-    width: 48%;
+/* MOBILE MEDIA QUERIE */
+@media only screen and (max-width: 576px) {
 
+  label {
+    margin-left: 2%;
+  }
+
+  input[type=radio] {
+    transform: scale(2, 2);
+    margin-left: 20%;
   }
 
   #type-button {
     margin: 1em 2em;
-
   }
 
   #order-section {
@@ -447,20 +434,10 @@ ul li:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
   }
 
   #order-section>section {
     width: 85%;
-  }
-
-  input[type=radio] {
-    transform: scale(2, 2);
-    margin-left: 20%;
-  }
-
-  label {
-    margin-left: 2%;
   }
 
   #subtitle {
@@ -469,7 +446,13 @@ ul li:hover {
 
   #principal-stats>section {
     width: 80%;
-
   }
 
+  .menu-mobile {
+    background-color: rgb(10, 113, 182);
+  }
+
+  .divPokemon {
+    width: 48%;
+  }
 }
