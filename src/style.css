@@ -63,6 +63,7 @@ a:visited {
   color: #101061;
 }
 
+
 /* MAIN MENU Class */
 .menu-mobile {
   display: flex;
@@ -229,11 +230,15 @@ input[type=search] {
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .divPokemon:hover .flip-card-inner {
   transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 
 .flip-card-front,
@@ -256,6 +261,7 @@ input[type=search] {
   border-radius: 1em;
   text-align: justify;
 }
+
 
 /* INPUT RADIOS */
 input[type=radio] {
