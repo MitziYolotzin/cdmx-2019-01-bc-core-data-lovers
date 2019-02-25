@@ -23,7 +23,6 @@ let avgAverage = document.getElementById('avg-avg');
 //BUTTTONS actions for order data
 const orderRadio = document.getElementsByName("order");
 const arrayRadio = Array.from(orderRadio);
-let dataParse = JSON.parse(localStorage.dataPoke);
 
 //Obtains the location of the page
 let ubication = location.href;
@@ -35,7 +34,6 @@ let outMenu = document.querySelector('nav');
 
 //JSON Data Dynamic 
 //let dataPokemon =[];
-
 
 //Show data
 const printPokemon = (pokemon) => {
@@ -84,9 +82,12 @@ fetch ('./data/pokemon/pokemon.json')
 .then(dataPoke => {
  
 localStorage.dataPoke = JSON.stringify(dataPoke.pokemon);
-
-});
-
+return dataPoke
+})
+.then(data =>{ 
+  dataParse =  JSON.parse(localStorage.getItem("dataPoke"))
+return data
+})
 };
 
 
@@ -220,7 +221,7 @@ if (ubication.includes('typePokemon.html')) {
   });*/
 
   getOrderPokemon(arrayRadio);
-
+  dataParse = JSON.parse(localStorage.getItem("dataPoke"))
   showList(window.data.showAllData(dataParse));
   
 
