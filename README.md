@@ -27,6 +27,14 @@ Cuando necesiten consultar información sobre los pokemons en especifico y saber
   4. Como usuario quiero ver los pokémones ordenados por peso y altura.
   5. Como usuario quiero ver estadísticas de los pokémones.
 
+## Encuestas
+
+<img src="https://i.ibb.co/gJWKhkv/Cap-3.jpg" alt="Cap-3" border="0" />
+
+<img src="https://i.ibb.co/jWPgVX4/Cap-1.jpg" alt="Cap-1" border="0" />
+
+<img src="https://i.ibb.co/ZWgjcrg/Cap-2.jpg" alt="Cap-2" border="0" />
+
 ## Diseño de la Interfaz de Usuario
 
 ### Prototipo de baja fidelidad
@@ -35,9 +43,11 @@ Cuando necesiten consultar información sobre los pokemons en especifico y saber
 
 ### Prototipo de alta fidelidad
 
-<a href="https://ibb.co/Fzs5dBY"><img src="https://i.ibb.co/PgTcV5W/home.png" alt="home" border="0"></a></br>
-<a href="https://ibb.co/gT07xSV"><img src="https://i.ibb.co/R0XSq3y/filter.png" alt="filter" border="0"></a></br>
-<a href="https://ibb.co/HCwmqdk"><img src="https://i.ibb.co/VxnXTmP/order.png" alt="order" border="0"></a>
+<img src="https://i.ibb.co/qWDSL2b/pokemobile-1.png" alt="pokemobile-1" border="0" />
+
+<img src="https://i.ibb.co/NNhf1GK/pokemobile-2.png" alt="pokemobile-2" border="0" />
+
+<img src="https://i.ibb.co/Hnp9b5G/pokemobile-3.png" alt="pokemobile-3" border="0" />
 
 
 ### Testeos de usabilidad
@@ -643,6 +653,6 @@ compañera:
 
 ## Checklist (Opcional)
 
-- [ ] Consume data de forma dinámica (`fetch()`).
+- [x] Consume data de forma dinámica (`fetch()`).
 - [x] Utiliza Librerías de graficas (`chart.js` ó `google chart`).
-- [ ] Cobertura de coverage al 100%.
+- [x] Cobertura de coverage al 100%.

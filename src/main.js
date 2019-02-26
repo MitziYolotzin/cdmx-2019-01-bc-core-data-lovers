@@ -32,8 +32,6 @@ let menu = document.querySelector('#menu');
 let drawer = document.querySelector('nav');
 let outMenu = document.querySelector('nav');
 
-//JSON Data Dynamic 
-//let dataPokemon =[];
 
 //Show data
 const printPokemon = (pokemon) => {
@@ -73,6 +71,8 @@ const showList = (pokemonList) => {
 };
 
 
+//JSON dataParse
+let dataParse =  JSON.parse(localStorage.getItem("dataPoke"));
 //JSON Data Dynamic
 const dataDynamic = () => {
 fetch ('./data/pokemon/pokemon.json')
@@ -84,8 +84,8 @@ fetch ('./data/pokemon/pokemon.json')
 localStorage.dataPoke = JSON.stringify(dataPoke.pokemon);
 return dataPoke
 })
-.then(data =>{ 
-  dataParse =  JSON.parse(localStorage.getItem("dataPoke"))
+.then(data => { 
+ dataParse
 return data
 })
 };
@@ -127,7 +127,8 @@ const getOrderPokemon = (optionsRadio) => {
   });
 }
 
-//Stats
+
+//STATS
 const computeStatsView = () => {
   const resultCandy = window.data.computeStats(JSON.parse(localStorage.dataPoke), 'candy_count');
   maxCandy.innerHTML = resultCandy.maximum;
@@ -206,6 +207,8 @@ const computeStatsView = () => {
   google.charts.setOnLoadCallback(drawChartAvg);
 }
 
+
+//ChangePages
 const changePageSection = () => {
 //this part obtains the location of the page and depending on it executes the functions
 if (ubication.includes('typePokemon.html')) {
@@ -221,7 +224,7 @@ if (ubication.includes('typePokemon.html')) {
   });*/
 
   getOrderPokemon(arrayRadio);
-  dataParse = JSON.parse(localStorage.getItem("dataPoke"))
+  let dataParse = JSON.parse(localStorage.getItem("dataPoke"));
   showList(window.data.showAllData(dataParse));
   
 
